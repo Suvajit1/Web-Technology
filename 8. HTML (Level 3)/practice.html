@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/action">
+        <div>
+            <label for="name">Username</label>
+            <input type="text" id="name" placeholder="Enter Username" name="uname">
+        </div>
+        <div>
+            <label for="pass">Passwawd</label>
+            <input type="password" id="pass" placeholder="Enter Passwawd" name="pass">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <form action="https://www.youtube.com/results?">
+    
+        <input type="text" placeholder="search in YouTube" name="search_query">
+        <button>Search</button>
+    </form>
+    <hr>
+    <form action="https://www.google.com">
+        <input type="text" placeholder="search in Google" name="q">
+        <button>Search</button>
+    </form>
+    <hr>
+    <form action="/action">
+        <div>
+            <input type="checkbox" id="check" name="age" checked>
+            <label for="check">I'm 18+</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <form action="/action">
+        <div>
+            <input type="radio" name="fruit" id="apple" value="apple">
+            <label for="apple">Apple</label>
+        </div>
+        <div>
+            <input type="radio" name="fruit" id="banana" value="banana">
+            <label for="banana">Banana</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <form action="/action">
+        <div>
+            Choose your Subject
+            <input type="checkbox" id="math" name="sub" value="math">
+            <label for="math">Math</label>  
+            <input type="checkbox" id="phy" name="sub" value="phy">
+            <label for="phy">Physics</label>
+            <input type="checkbox" name="sub" id="chem" value="chem">
+            <label for="chem">Chemistry</label>
+        </div>
+        <button>Submit</button>
+    </form>
+    <hr>
+    <form action="/action">
+        <!-- droup down -->
+        <div>
+            <label for="prof">Choose your profession</label>
+            <select name="profession" id="prof">
+                <option>Select your option</option>
+                <option value="stu" selected>Student</option>
+                <option value="dev">Developer</option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <!-- range input element -->
+    <form action="/action">
+        <div>
+            <label for="vol">Select volume level</label>
+            <input type="range" id="vol" name="vol" min="0" max="200" step="25" value="50">
+        </div>
+        <button>submit</button>
+    </form>
+
+    <hr>
+    <!-- text area element -->
+    <form action="/action">
+        <div>
+            <label for="feedback">Write your feedback</label>
+            <textarea name="feedback" id="feedback" cols="30" rows="10" placeholder="write your feedback here"></textarea>
+        </div>
+        <input type="submit">
+    </form>
+</body>
+</html>

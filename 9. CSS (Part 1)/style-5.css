@@ -1,0 +1,21 @@
+h3{
+    text-align: right;
+    width: 50%;
+    /* border: solid; */
+    font-weight: normal;
+    text-decoration: wavy red underline;
+    letter-spacing: 10px;
+    font-size: 25px;
+    font-family: fantasy;
+}
+
+p{
+    text-align: justify;
+    font-weight: 900;
+    text-decoration: line-through;
+    line-height: 2;
+}
+
+a{
+    text-decoration: none;
+}

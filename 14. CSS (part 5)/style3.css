@@ -1,0 +1,31 @@
+#container{
+    height: 300px;
+    width: 80%;
+    background-color: antiquewhite;
+    border: 2px solid black;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-items: flex-end;
+    align-items: center;
+
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+    align-content: space-between;
+    align-content: space-evenly;
+}
+
+h1{
+    text-align: center;
+}
+
+#container div{
+    height: 50px;
+    width: 300px;
+    color: rgb(187, 244, 246);
+    text-align: center;
+    font-size: 1.5em;
+}

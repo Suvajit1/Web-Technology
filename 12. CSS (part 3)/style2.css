@@ -1,0 +1,41 @@
+h1{
+    display: inline;
+}
+span{
+    display: block;
+}
+div{
+    height: 200px;
+    width: 200px;
+    background-color: palegreen;
+    border: 2px solid black;
+    margin: 5px;
+    /* display: inline; */
+    display: inline-block;
+}
+
+#third{
+    display: none;
+}
+#outer{
+    height: 400px;
+    width: 400px;
+    margin: 50px;
+    font-size: 20px;
+}
+#inner{
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+    margin-left: 10%;
+    font-size: 1.5em;
+    padding: 1em;
+}
+
+button{
+    font-size: 20px;
+    border-radius: 20px;
+    border: 2px solid green;
+    padding-left: 1em;
+    padding-right: 1em;
+}

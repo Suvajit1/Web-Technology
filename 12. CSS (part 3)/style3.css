@@ -1,0 +1,12 @@
+section{
+    font-size: 20px;
+}
+
+div{
+    /* font-size: 1em; */
+    font-size: 2em;
+}
+
+div{
+    font-size: 2rem;
+}

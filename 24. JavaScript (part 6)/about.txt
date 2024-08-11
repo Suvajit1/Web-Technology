@@ -1,0 +1,6 @@
+What is Function ?
+Function with arguments
+Return Keyword
+Scope - Block Scope
+      - Lexical Scope
+Higher Order Function

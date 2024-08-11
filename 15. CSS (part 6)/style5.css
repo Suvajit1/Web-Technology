@@ -1,0 +1,25 @@
+.box{
+    height: 100px;
+    width: 300px;
+    background-color: pink;
+
+    animation: colAnimation 2s ease-in 0s infinite normal;
+}
+
+@keyframes colAnimation{
+    0%{
+        background-color: burlywood ;
+    }
+    25%{
+        background-color: aquamarine;
+    }
+    50%{
+        background-color: blueviolet;
+    }
+    75%{
+       background-color: chartreuse; 
+    }
+    100%{
+        background-color: crimson;
+    }
+}

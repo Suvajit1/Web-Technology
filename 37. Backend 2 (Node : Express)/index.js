@@ -23,7 +23,7 @@ app.listen(port, ()=>{
 // });
 
 app.get("/", (req, res)=>{
-    res.send("you contacted root path");
+    res.send("Hello, I'm root");
 });
 
 app.get("/apple", (req, res)=>{
@@ -36,4 +36,8 @@ app.get("/orange", (req, res)=>{
 
 app.get("*", (req, res)=>{
     res.send("This path doesn't exist");
+});
+
+app.post("/", (req,res)=>{
+    res.send("you send a post request to root");
 });

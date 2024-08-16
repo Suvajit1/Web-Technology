@@ -20,3 +20,20 @@ app.get("/", (req, res)=>{
 app.get("/hello", (req, res)=>{
     res.send("hello");
 });
+
+app.get("/rolldice", (req,res)=>{
+    // let num = Math.floor(Math.random()*6)+1;
+    let diceVal = Math.floor(Math.random()*6)+1;
+
+    // res.render("rolldice",{diceVal : num});
+    // res.render("rolldice",{diceVal : diceVal});
+    res.render("rolldice",{ diceVal });
+});
+
+app.get("/ig/:username", (req,res)=>{
+    let {username} = req.params;
+    // console.log(username);
+
+    let followers = ["Adom", "Bob", "Steve", "Arun"];
+    res.render("instragram.ejs", {username, followers});
+});

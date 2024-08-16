@@ -26,18 +26,25 @@ app.get("/", (req, res)=>{
     res.send("Hello, I'm root");
 });
 
-app.get("/apple", (req, res)=>{
-    res.send("you contacted apple path");
-});
+// app.get("/apple", (req, res)=>{
+//     res.send("you contacted apple path");
+// });
 
-app.get("/orange", (req, res)=>{
-    res.send("you contacted orange path");
-});
+// app.get("/orange", (req, res)=>{
+//     res.send("you contacted orange path");
+// });
 
-app.get("*", (req, res)=>{
-    res.send("This path doesn't exist");
-});
+// app.get("*", (req, res)=>{
+//     res.send("This path doesn't exist");
+// });
 
-app.post("/", (req,res)=>{
-    res.send("you send a post request to root");
-});
+// app.post("/", (req,res)=>{
+//     res.send("you send a post request to root");
+// });
+
+app.get("/:username/:id", (req, res)=>{
+    console.log(req.params);
+    let {username, id} = req.params;
+    let htmlStr = `<h1>Welcome to the page of @${username}</h1>`
+    res.send(htmlStr);
+})

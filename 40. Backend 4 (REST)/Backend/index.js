@@ -1,8 +1,8 @@
-const { Console } = require("console");
 const express = require("express");
 const app = express();
 const port = 8080;
 const path = require("path");
+const { v4: uuidv4 } = require('uuid');
 
 app.use(express.urlencoded({extended:true}));
 
@@ -16,19 +16,22 @@ app.listen(port, ()=>{
 
 let posts = [
     {
-        id : "1a",
+        // id : "1a",
+        id : uuidv4(),
         username : "apnacollege",
         content : "This is an education platfirm"
     },
     
     {
-        id : "2b",
+        // id : "2b",
+        id : uuidv4(),
         username : "suvajit",
         content : "Hard work is important to achieve success"
     },
     
     {
-        id : "3c",
+        // id : "3c",
+        id : uuidv4(),
         username : "sayan",
         content : "I got selected for my first internship"
     }
@@ -45,7 +48,8 @@ app.get("/posts/new", (req,res)=>{
 app.post("/posts", (req, res)=>{
     // console.log(req.body);
     let {username, content} = req.body;
-    posts.push({username, content});
+    let id = uuidv4();
+    posts.push({id, username, content});
     res.redirect("/posts");
 });
 
@@ -53,7 +57,24 @@ app.get("/posts/:id", (req,res)=>{
     let {id} = req.params;
     // console.log(id);
     let post = posts.find((p)=>(id === p.id));
-    console.log(post);
+    // console.log(post);
     // res.send("request working");
     res.render("show.ejs", {post});
+});
+
+app.patch("/posts/:id", (req,res)=>{
+    let {id} = req.params;
+    // console.log(id);
+    let newContent = req.body.content;
+    // console.log(newContent);
+    let post = posts.find((p)=>(id === p.id));
+    post.content = newContent;
+    console.log(post);
+    res.send("patch request working");
+});
+
+app.get("posts/:id/edit", (req,res)=>{
+    let {id} = req.params;
+    let post = posts.find((p)=>(id === p.id));
+    res.render("edit.ejs")
 });

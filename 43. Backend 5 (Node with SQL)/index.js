@@ -1,47 +1,21 @@
-const { faker } = require('@faker-js/faker');
-const mysql = require("mysql2");
+const express = require("express");
+const app = express();
+const port = 8080;
+const path = require("path");
+const { v4: uuidv4 } = require('uuid');
+const methodOverride = require("method-override");
 
-// let createRandomUser = ()=>{
-//     return {
-//       userId: faker.string.uuid(),
-//       username: faker.internet.userName(),
-//       email: faker.internet.email(),
-//       avatar: faker.image.avatar(),
-//       password: faker.internet.password(),
-//       birthdate: faker.date.birthdate(),
-//       registeredAt: faker.date.past(),
-//     };
-// };
+app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
+app.use(express.static(path.join(__dirname, "/public")));
 
-// console.log(createRandomUser());
 
-// let getUser = ()=>{
-//     return {
-//       id: faker.string.uuid(),
-//       username: faker.internet.userName(),
-//       email: faker.internet.email(),
-//       password: faker.internet.password(),
-//     };
-// };
-
-// console.log(getUser());
-
-// Create the connection to database
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: 'delta_app',
-    password: "BinDAS@123_"
+app.listen(port, ()=>{
+    console.log(`App is listening on port : ${port}`);
 });
 
-connection.query("show tables", (err, res)=>{
-    try{
-        if(err) throw err;
-        console.log(res);
-    }
-    catch(err){
-        console.log(err);
-    }
-});
-
-connection.end();
+app.get("/", (req, res)=>{
+    res.send("welcome to home page!");
+})

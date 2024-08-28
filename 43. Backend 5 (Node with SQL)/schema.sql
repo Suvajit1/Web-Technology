@@ -1,4 +1,4 @@
--- show tables;
+show tables;
 
 CREATE TABLE IF not EXISTS user(
     id VARCHAR(50) PRIMARY KEY,
@@ -6,4 +6,3 @@ CREATE TABLE IF not EXISTS user(
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL
 );
-

@@ -85,7 +85,7 @@ app.get("/user/:id/edit", (req, res)=>{
 app.patch("/user/:id", (req, res)=>{
     let {id} = req.params;
     let {password: formPass, username: newUsername} = req.body;
-    let p = `SELECT * FROM user WHERE id = "${id}"`;
+    let q = `SELECT * FROM user WHERE id = "${id}"`;
     try{
         connection.query(q, (err, result)=>{
             if(err) throw err;

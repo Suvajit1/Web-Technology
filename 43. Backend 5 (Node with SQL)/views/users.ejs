@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <div>
+        <form action="/user/new" method="get">
+            <button>Creat Account</button>
+        </form>
+    </div>
     <h2>All Users Information</h2>
     <hr>
     <br>
@@ -15,7 +20,6 @@
             <th>UserId</th>
             <th>Username</th>
             <th>Email</th>
-            <th></th>
         </tr>
         <% for(let user of users){ %>
             <tr>
@@ -25,9 +29,9 @@
                 <td>
                     <a href="http://localhost:8080/user/<%= user.id %>/edit">Edit Username</a>
                 </td>
+                <td><a href="http://localhost:8080/user/<%= user.id %>/delete">Delete User</a></td>
             </tr>   
         <% } %>
     </table>
-
 </body>
 </html>

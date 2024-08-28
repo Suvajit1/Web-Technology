@@ -90,7 +90,7 @@ app.patch("/user/:id", (req, res)=>{
         connection.query(q, (err, result)=>{
             if(err) throw err;
             let user = result[0];
-            console.log(user);
+            // console.log(user);
             if(formPass != user.password){
                 res.send("wrong password!")
             }else{
@@ -101,6 +101,73 @@ app.patch("/user/:id", (req, res)=>{
                 });
             }
         });
+    }catch(err){
+        res.send("some thing error is db");
+    }
+});
+
+// delete route
+app.get("/user/:id/delete", (req,res)=>{
+    let {id} = req.params;
+    let q = `select * from user where id = "${id}"`;
+    try{
+        connection.query(q, (err, result)=>{
+            let user = result[0];
+            // console.log(user);
+            res.render("delete.ejs", {user});
+        });
+    }catch(err){
+        res.send("some thing error is db");
+    }
+});
+
+app.delete("/user/:id", (req, res)=>{
+    let {id} = req.params;
+    let {email : formEmail, password : formPass} = req.body;
+    let q = `select * from user where id = "${id}"`;
+
+    try{
+        connection.query(q, (err, result)=>{
+            if(err) throw err;
+            let user = result[0];
+
+            if(formPass != user.password){
+                res.send("wrong password!")
+            }
+            else if(formEmail != user.email){
+                res.send("wrong email");
+            }
+            else{
+                let q2 = `DELETE FROM user WHERE id="${id}"`;
+                connection.query(q2, (err, result)=>{
+                    if(err) throw err;
+                    res.redirect("/user");
+                });
+            }
+        });
+    }catch(err){
+        res.send("some thing error is db");
+    }
+});
+
+// add route
+app.get("/user/new", (req, res)=>{
+    res.render("new.ejs");
+});
+
+app.post("/user/new", (req, res)=>{
+    // console.log(req.body);
+    let {username, email, password} = req.body;
+    let id = uuidv4();
+    let q = `INSERT INTO user ( id, username, email, password ) VALUES (?, ?, ?, ?)`
+    user = [id, username, email, password];
+    console.log(user);
+    try{
+        connection.query(q, user, (err, result)=>{
+            if(err) throw err;
+            console.log("added new user");
+            res.redirect("/user");
+        })
     }catch(err){
         res.send("some thing error is db");
     }

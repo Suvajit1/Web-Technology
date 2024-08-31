@@ -1,2 +1,9 @@
 # Web-Technology
-Apna College
+web development using 
+html, 
+css,
+JS,
+Nodejs,
+ExpressJs,
+sql,
+mongodb,

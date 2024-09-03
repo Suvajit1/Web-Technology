@@ -1,0 +1,26 @@
+body{
+    margin-left: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.chat{
+    background-color: rgb(201, 217, 231);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.msg{
+    background-color: dodgerblue;
+    background-color: rgb(24, 114, 102);
+    color: white;
+    padding: 0.5px 15px;
+    border-radius: 8px;
+}
+
+#edit{
+    background-color: rgb(205, 201, 201);
+}

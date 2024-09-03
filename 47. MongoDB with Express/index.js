@@ -80,12 +80,25 @@ app.patch("/chats/:id", (req,res)=>{
     let {msg} = req.body;
     console.log(msg);
     let new_time = new Date();
-    Chat.findByIdAndUpdate(id, {message : msg}, {created_at : new_time}).then((result)=>{
+    Chat.findByIdAndUpdate(id, {message : msg}, {created_at : new_time}, {runValidators : true}).then((result)=>{
         // console.log(res);
         res.send("updated");
     }).catch((err)=>{
         console.log(err);
     });
-    
+
+    res.redirect("/chats");
+});
+
+// destroy route
+app.get("/chats/:id/delete", (req,res)=>{
+    let {id} = req.params;
+    // console.log(id);
+    res.render("delete.ejs", {id});
+});
+
+app.delete("/chats/:id", async (req, res)=>{
+    let {id} = req.params;
+    await Chat.findByIdAndDelete(id);
     res.redirect("/chats");
 });

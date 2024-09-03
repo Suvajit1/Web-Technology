@@ -13,13 +13,13 @@
             <p>From : <%= chat.from %></p>
             <div class="msg">
                 <p> <%= chat.message %></p>
-                <a href="/chats/<%= chat._id %>/edit"><button id="edit">edit</button></a>
+                <a href="/chats/<%= chat._id %>/edit"><button id="btn">edit</button></a>
             </div>
             <p>Received by : <%= chat.to %></p>
             <hr>
             <p>Time : <%= chat.created_at.toString().split(" ")[4] %></p>
             <p>Date : <%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %></p>
-
+            <a href="/chats/<%= chat._id %>/delete"><button id="btn">delete message!</button></a>
         </div>
     <% } %>
 

@@ -38,24 +38,37 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.use("/api", (req, res, next)=>{
+// app.use("/api", (req, res, next)=>{
+//     let {token} = req.query;
+
+//     // ether do this
+//     if(token === "giveaccess"){
+//         return next();
+//     }
+//     res.send("ACCESS DENIED");
+
+//     // // or this
+//     // if(token === "giveaccess"){
+//     //     next();
+//     // }else{
+//     //     res.send("ACCESS DENIED");
+//     // }
+// });
+
+// app.get("/api", (req,res)=>{
+//     res.send("data");
+// });
+
+const checkToken = (req, res, next)=>{
     let {token} = req.query;
 
-    // ether do this
     if(token === "giveaccess"){
         return next();
     }
-    res.send("ACCESS DENIED");
+    throw new Error("ACCESS DENIED");
+};
 
-    // // or this
-    // if(token === "giveaccess"){
-    //     next();
-    // }else{
-    //     res.send("ACCESS DENIED");
-    // }
-});
-
-app.get("/api", (req,res)=>{
+app.get("/api", checkToken, (req,res)=>{
     res.send("data");
 });
 
@@ -67,6 +80,10 @@ app.get("/", (req, res)=>{
 app.get("/random", (req, res)=>{
     // console.log("random");
     res.send("random page");
+});
+
+app.get("/wrong", (req,res)=>{
+    sbcd = abcd;
 });
 
 // 404

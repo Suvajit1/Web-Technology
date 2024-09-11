@@ -42,53 +42,52 @@ customerSchema.post("findOneAndDelete", async (customer)=>{
 const Customer = mongoose.model("Customer", customerSchema);
 
 
-const deleteData = async ()=>{
-    Customer.findByIdAndDelete("66e0d1d7544a2a73023f5756");
+// const deleteData = async ()=>{
+//     Customer.findByIdAndDelete("66e0d1d7544a2a73023f5756");
+// }
+
+// deleteData();
+
+
+const addCustomer = async ()=>{
+    let newCust = new Customer({
+        name : "sayan",
+    });
+
+    let newOrder = new Order({
+        item : "barger",
+        price : 250,
+    });
+
+    newCust.orders.push(newOrder);
+
+    await newOrder.save();
+    await newCust.save();
 }
 
-deleteData();
+addCustomer();
 
 
+const findCustomer = async ()=>{
+    let result = await Customer.find().populate("orders");
+    // console.log(result);
+    console.log("Customer Details");
+    for( data of result){
+        console.log(data);
+    }
+}
 
-// const addCustomer = async ()=>{
-//     let newCust = new Customer({
-//         name : "sayan",
-//     });
+findCustomer();
 
-//     let newOrder = new Order({
-//         item : "barger",
-//         price : 250,
-//     });
+const findOrder = async ()=>{
+    let result = await Order.find();
+    console.log("all Orders");
+    console.log(result);
+}
 
-//     newCust.orders.push(newOrder);
+findOrder();
 
-//     await newOrder.save();
-//     await newCust.save();
-// }
-
-// addCustomer();
-
-
-// const findCustomer = async ()=>{
-//     let result = await Customer.find().populate("orders");
-//     // console.log(result);
-//     console.log("Customer Details");
-//     for( data of result){
-//         console.log(data);
-//     }
-// }
-
-// findCustomer();
-
-// const findOrder = async ()=>{
-//     let result = await Order.find();
-//     console.log("all Orders");
-//     console.log(result);
-// }
-
-// findOrder();
-
-// mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false);
 
 
 const deleteCust = async ()=>{

@@ -25,20 +25,20 @@ const customerSchema = new Schema({
 
 const Customer = mongoose.model("Customer", customerSchema);
 
-const addCustomer = async ()=>{
-    let cust1 = new Customer({
-        name : "saugata",
-    });
+// const addCustomer = async ()=>{
+//     let cust1 = new Customer({
+//         name : "saugata",
+//     });
 
-    let order1 = await Order.findOne({item : "chips"});
-    let order2 = await Order.findOne({item : "samasa"});
+//     let order1 = await Order.findOne({item : "chips"});
+//     let order2 = await Order.findOne({item : "samasa"});
 
-    cust1.orders.push(order1);
-    cust1.orders.push(order2);
+//     cust1.orders.push(order1);
+//     cust1.orders.push(order2);
 
-    let result = await cust1.save();
-    console.log(result);
-}
+//     let result = await cust1.save();
+//     console.log(result);
+// }
 
 // addCustomer();
 

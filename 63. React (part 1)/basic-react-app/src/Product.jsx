@@ -1,6 +1,6 @@
 import "./Product.css";
 
-function Product(){
+export default function Product(){
     return(
         <div className = "Product">
             <h2>This is the Title!</h2>
@@ -9,4 +9,4 @@ function Product(){
     );
 }
 
-export default Product;
+// export default Product;

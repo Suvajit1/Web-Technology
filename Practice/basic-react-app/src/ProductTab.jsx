@@ -3,12 +3,10 @@ import Product from "./Product";
 function ProductTab() {
   return (
     <>
-      <Product
-        title="phone"
-        price={10000}
-        features={["hi-tech", "durable", "fast"]}
-        features2={{ a: "hi-tech", b: "durable", c: "fast" }}
-      ></Product>
+      <Product title="phone" price={20000}></Product>
+      <Product title="laptop" price={50000}></Product>
+      <Product title="pen" price={50}></Product>
+      
     </>
   );
 }

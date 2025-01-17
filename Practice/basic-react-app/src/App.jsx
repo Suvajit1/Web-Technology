@@ -1,12 +1,13 @@
 import "./App.css";
 import MsgBox from "./MsgBox";
+import Button from "./Button";
+import Form from "./Form";
 
 function App() {
   return (
     <>
-      <MsgBox userName="Suvajit" textColor="pink"></MsgBox>
-      <MsgBox userName="Swagata" textColor="red"></MsgBox>
-
+      {/* <Button></Button> */}
+      <Form></Form>
     </>
   );
 }

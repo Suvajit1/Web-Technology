@@ -8,8 +8,8 @@ export default function CommentsForm() {
   });
 
   let handleInputChange = (event) => {
+    let { name, value } = event.target;
     setFormData((currData) => {
-      let { name, value } = event.target;
       return {
         ...currData,
         [name]: value,

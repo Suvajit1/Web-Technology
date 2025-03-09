@@ -5,12 +5,12 @@ import InfoBox from "./InfoBox";
 
 export default function WeatherApp() {
   let [weatherInfo, setWeatherInfo] = useState({
-    city: "Mumbai",
-    temp: 30,
-    tempMin: 31,
-    tempMax: 32,
-    humidity: 40,
-    feelsLike: 35,
+    city: "Kolkata",
+    temp: 21,
+    tempMin: 20,
+    tempMax: 25,
+    humidity: 70,
+    feelsLike: 23,
     weather: "Sunny",
   });
 

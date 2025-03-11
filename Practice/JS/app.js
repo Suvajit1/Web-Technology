@@ -1,13 +1,13 @@
-function savetoDB(data) {
-  return new Promise((resolve, reject) => {
-    let internetSpeed = Math.floor(Math.random() * 10) + 1;
-    if (internetSpeed > 4) {
-      resolve("Succces: Data saved to DB");
-    } else {
-      reject("Failure: Data not saved to DB");
-    }
-  });
-}
+// function savetoDB(data) {
+//   return new Promise((resolve, reject) => {
+//     let internetSpeed = Math.floor(Math.random() * 10) + 1;
+//     if (internetSpeed > 4) {
+//       resolve("Succces: Data saved to DB");
+//     } else {
+//       reject("Failure: Data not saved to DB");
+//     }
+//   });
+// }
 
 // savetoDB("Suvajit Sadhukhan")
 //   .then(() => {
@@ -67,14 +67,37 @@ let url = "https://official-joke-api.appspot.com/random_joke";
 //     console.log(err);
 //   });
 
+// async function getJokes() {
+//   try {
+//     let res = await fetch(url);
+//     let data = await res.json();
+//     console.log(data);
+//   } catch (err) {
+//     console.log("error : ",err);
+//   }
+// }
+
+// getJokes();
+
+let btn = document.querySelector("button");
+btn.addEventListener("click", async () => {
+  // console.log("btn was clk")
+  let joke = await getJokes();
+  //   console.log(joke.setup);
+  //   console.log(joke.punchline);
+  let p1 = document.querySelector(".p1");
+  let p2 = document.querySelector(".p2");
+  p1.innerText = joke.setup;
+  p2.innerText = joke.punchline;
+});
+
 async function getJokes() {
   try {
-    let res = await fetch(url);
-    let data = await res.json();
-    console.log(data);
+    let res = await axios.get(url);
+    return res.data;
   } catch (err) {
-    console.log("error : ",err);
+    console.log("error : ", err);
   }
 }
 
-getJokes();
+// getJokes();

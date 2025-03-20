@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = 4000;
 const path = require("path");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const Chat = require("./models/chat");
+const ExpressError = require("./ExpressError");
 
 main()
   .then(() => console.log("Connected to db"))
@@ -17,7 +18,6 @@ async function main() {
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("/public"));
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.set("view engine", "ejs");
@@ -39,26 +39,42 @@ app.get("/chat/new", (req, res) => {
 });
 
 // create route
-app.post("/chats", (req, res) => {
-  let { from, message, to } = req.body;
-  let newChat = new Chat({
-    from: from,
-    message: message,
-    to: to,
-    created_at: new Date(),
-  });
-
-  newChat
-    .save()
-    .then(() => {
-      console.log("Chat was saved!");
-    })
-    .catch((err) => {
-      console.log(err);
+app.post("/chats", async (req, res, next) => {
+  try {
+    let { from, message, to } = req.body;
+    let newChat = new Chat({
+      from: from,
+      message: message,
+      to: to,
+      created_at: new Date(),
     });
 
-  res.redirect("/chats");
+    await newChat.save();
+    res.redirect("/chats");
+  } catch (err) {
+    next(err);
+  }
 });
+
+// asyncWrap
+function asyncWrap(fn) {
+  return function (req, res, next) {
+    fn(req, res, next).catch((err) => next(err));
+  };
+}
+
+// show route
+app.get(
+  "/chats/:id",
+  asyncWrap(async (req, res, next) => {
+    let { id } = req.params;
+    const chat = await Chat.findById(id);
+    if (!chat) {
+      next(new ExpressError(404, "Chat not found!"));
+    }
+    res.render("edit.ejs", { chat });
+  })
+);
 
 // edit route
 app.get("/chats/:id/edit", async (req, res) => {
@@ -71,11 +87,14 @@ app.get("/chats/:id/edit", async (req, res) => {
 app.put("/chats/:id", async (req, res) => {
   let { id } = req.params;
   let { message } = req.body;
-  await Chat.findByIdAndUpdate(id, {
-    message,
-    created_at: new Date(),
-    runValidator: true,
-  });
+  await Chat.findByIdAndUpdate(
+    id,
+    {
+      message,
+      created_at: new Date(),
+    },
+    { runValidators: true }
+  );
   res.redirect("/chats");
 });
 
@@ -84,6 +103,17 @@ app.delete("/chats/:id", async (req, res) => {
   let { id } = req.params;
   await Chat.findByIdAndDelete(id);
   res.redirect("/chats");
+});
+
+app.use((err, req, res, next)=>{
+  console.log(err.name);
+  next(err);
+})
+
+// error handling middleware
+app.use((err, req, res, next) => {
+  let { status = 500, message = "some error occurs" } = err;
+  res.status(status).send(message);
 });
 
 app.listen(port, () => {

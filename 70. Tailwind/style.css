@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.box {
+  @apply w-32 h-32 p-4 m-4 bg-purple-500 rounded-4xl;
+}
